@@ -4,6 +4,7 @@ from unittest import TestCase
 
 from xProject import Neuron
 
+@pytest.mark.describe('Unit testing of Neuron class ')
 class NeuronTest(TestCase):
     """
         Class Unit tests the Neuron class in isolation, meaning
@@ -16,7 +17,7 @@ class NeuronTest(TestCase):
         Tests construction of Neuron Object
         
         Checks: 
-            whether valid object can be created
+            whether valid 
         
         Args: 
             None
@@ -26,6 +27,7 @@ class NeuronTest(TestCase):
         """
         neuron = Neuron.Neuron(0.1)
 
+    @mock.patch('xProject.Neuron.Neuron.squash')
     def test_calculate_output(self,mock_squash):    
         mock_squash.return_value = 1
         #neuron = Neuron.Neuron(0.1)
