@@ -1,9 +1,9 @@
 import mock
 from unittest import TestCase
 
-#from xProject import NeuralNetwork
-#from xProject import Neuron
-#from xProject import NeuronLayer
+from xProject import NeuralNetwork
+from xProject import Neuron
+from xProject import NeuronLayer
 
 class NeuralNetworkTest(TestCase):
     

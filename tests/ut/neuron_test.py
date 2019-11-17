@@ -1,16 +1,31 @@
 import mock
+import pytest
 from unittest import TestCase
 
-#from xProject import Neuron
+from xProject import Neuron
 
 class NeuronTest(TestCase):
+    """
+        Class Unit tests the Neuron class in isolation, meaning
+        that all ... used as Mock object to complete certain
+        .. opertions and ...s
+    """
     
-    def test1(self):
-        pass    
-    #def test_construction(self):    
-    #    neuron = Neuron.Neuron(0.1)
+    def test_construction(self):    
+        """
+        Tests construction of Neuron Object
+        
+        Checks: 
+            whether valid object can be created
+        
+        Args: 
+            None
+        
+        Return: 
+            None
+        """
+        neuron = Neuron.Neuron(0.1)
 
-    @mock.patch('xProject.Neuron.Neuron.squash')
     def test_calculate_output(self,mock_squash):    
         mock_squash.return_value = 1
         #neuron = Neuron.Neuron(0.1)
