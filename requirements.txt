@@ -1,2 +1,6 @@
 pytest
 mock
+pdoc3
+pytest-coverage
+pytest-testdox
+doxypypy
