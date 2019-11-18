@@ -75,24 +75,26 @@ class NeuronTest(TestCase):
         assert neuron.squash(input_val) < 1
         assert neuron.squash(input_val) > 0
 
-    def test_is_error_detection_valid(self):
-        """
-        Tests behavior of error detection
-        Given currnet target output o1 , and current output o2 ,
-        The error function... :  return 0.5 * (target_output - self.output) ** 2
+@pytest.mark.parametrize("o1,o2,expected",[
+    (0.1,0.2,0.3),
+    (0.2,0.2,0.1)],
+)
+def test_is_error_detection_valid(o1,o2,expected):
+    """
+    Tests behavior of error detection
+    Given currnet target output o1 , and current output o2 ,
+    The error function... :  return 0.5 * (target_output - self.output) ** 2
 
-        Inputs:
-            - o1: 0.2 
-            - o2: 0.5 
+    Inputs:
+	- current output 
+	- target outpt 
 
-        Expected:
-            - Return value 1
+    Expected:
+	- 0.5 * (target_output - current_output) ** 2
 
-        """
+    """
 
-        o1 = 0.2
-        o2 = 0.3
-        neuron = Neuron.Neuron(0.1)
-        neuron.output = o1
-        assert neuron.calculate_error(o2) < 1
+    neuron = Neuron.Neuron(0.1)
+    neuron.output = o1
+    assert neuron.calculate_error(o2) < expected
 
