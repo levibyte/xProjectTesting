@@ -4,6 +4,7 @@
 #export TRPWD=%testrail.pwd%
 #export SUITEID=5
 #export SUITE=unit
+echo "./bin/scripts/runTests $@"
 
 suiteid=$2
 if [ "$suiteid" == "" ]; then
@@ -37,10 +38,11 @@ if [ "$TEAMCITY" == "" ]; then
 	sed -i "s/!TC_TESTRAIL_SID!/$suiteid/" testrail.cfg.override 
 fi
 
+testrailstuff=""
 if [ "$NEED_TESTRAILREPORT" != "" ]; then
 	testrailstuff="--testrail --tr-testrun-name="$runname" --tr-config=testrail.cfg.override"
 fi
 
-echo "pytest --cov=xProject --testdox  $testrailstuff $suitestr"
-pytest --cov=xProject --testdox  $testrailstuff $suitestr 
+echo "pytest --cov=xProject --testdox $testrailstuff $suitestr"
+pytest --cov=xProject --testdox $testrailstuff $suitestr 
 coverage html	

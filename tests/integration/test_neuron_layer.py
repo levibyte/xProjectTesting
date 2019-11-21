@@ -12,7 +12,7 @@ class ITNeuronLayerTest(TestCase):
         on real Neuron NeuronNetwork classes 
     """
 
-    @testrail('C51')
+    @testrail('C55')
     def test_feeding_layer(self):
         """
         Tests behavior of ouput value calculation
