@@ -11,8 +11,8 @@ class ITNeuronLayerTest(TestCase):
         Integration testing of NeuronLayer class with depency
         on real Neuron NeuronNetwork classes 
     """
-	
-	@testrail('C55')
+
+    @testrail('C51')
     def test_feeding_layer(self):
         """
         Tests behavior of ouput value calculation
@@ -29,6 +29,6 @@ class ITNeuronLayerTest(TestCase):
         """
         nl = NeuronLayer.NeuronLayer(4,0.1)
         inputs = [ 0.1, 0.1, 0.5, 0.6 ]
-        nl.feed_forward(inputs)
-        assert nl.feed_forward(inputs) != 0
+        #nl.feed_forward(inputs)
+        #assert nl.feed_forward(inputs) != 0
 

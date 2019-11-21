@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#export TRUSR=%testrail.usr%
+#export TRPWD=%testrail.pwd%
+#export SUITEID=5
+#export SUITE=unit
+
 suiteid=$2
 if [ "$suiteid" == "" ]; then
 	suiteidstr=""
@@ -33,7 +38,7 @@ if [ "$TEAMCITY" == "" ]; then
 fi
 
 if [ "$NEED_TESTRAILREPORT" != "" ]; then
-	testrailstuff="--testrail --tr-testrun-name=\"$runname\" --tr-config=testrail.cfg.override"
+	testrailstuff="--testrail --tr-testrun-name="$runname" --tr-config=testrail.cfg.override"
 fi
 
 echo "pytest --cov=xProject --testdox  $testrailstuff $suitestr"

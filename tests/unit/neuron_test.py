@@ -1,6 +1,7 @@
 import mock
 import pytest
 from unittest import TestCase
+from pytest_testrail.plugin import testrail
 
 from xProject import Neuron
 
@@ -13,6 +14,7 @@ class NeuronTest(TestCase):
     """
 
     @pytest.mark.describe('test title1')
+    @testrail('C51')
     def test_construction_of_dummy_neuron(self):
         """
         Tests Construscts of Neuron Object
