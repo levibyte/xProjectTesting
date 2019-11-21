@@ -1,6 +1,8 @@
-pytest
 mock
 pdoc3
+pytest
 pytest-coverage
 pytest-testdox
+pytest-testrail
 doxypypy
+
