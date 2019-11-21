@@ -6,9 +6,9 @@ from xProject import NeuralNetwork
 from xProject import Neuron
 from xProject import NeuronLayer
 
-class NeuralNetworkTest(TestCase):
+class AIBooleanPredictionTest(TestCase):
 
-	def test_network_can_predict_the_or_operation(self):
+	def test_ai_can_predict_the_or_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
 			[[0, 1], [1]],
@@ -24,7 +24,7 @@ class NeuralNetworkTest(TestCase):
 		#print ("Predication OR when [1,1] --> {}".format(nn.feed_forward([1,1])))
 
 
-	def test_network_can_predict_the_xor_operation(self):
+	def test_ai_can_predict_the_xor_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
 			[[0, 1], [1]],
@@ -40,7 +40,7 @@ class NeuralNetworkTest(TestCase):
 		#print ("Predication XOR when [1,0] --> {}".format(nn.feed_forward([1,0])))
 
 
-	def test_network_can_predict_the_and_operation(self):
+	def test_ai_can_predict_the_and_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
 			[[1, 0], [0]],
