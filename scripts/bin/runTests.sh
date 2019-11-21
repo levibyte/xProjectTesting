@@ -32,6 +32,10 @@ if [ "$TEAMCITY" == "" ]; then
 	sed -i "s/!TC_TESTRAIL_SID!/$suiteid/" testrail.cfg.override 
 fi
 
-echo "pytest --cov=xProject --testdox --testrail --tr-testrun-name="$runname" --tr-config=testrail.cfg.override $suitestr "
-pytest --cov=xProject --testdox --testrail --tr-testrun-name="$runname" --tr-config=testrail.cfg.override $suitestr 
-coverage html
+if [ "$NEED_TESTRAILREPORT" != "" ]; then
+	testrailstuff="--testrail --tr-testrun-name=\"$runname\" --tr-config=testrail.cfg.override"
+fi
+
+echo "pytest --cov=xProject --testdox  $testrailstuff $suitestr"
+pytest --cov=xProject --testdox  $testrailstuff $suitestr 
+coverage html	

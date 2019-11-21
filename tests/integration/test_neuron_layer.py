@@ -1,6 +1,7 @@
 import mock
 import pytest
 from unittest import TestCase
+from pytest_testrail.plugin import testrail
 
 from xProject import NeuronLayer
 
@@ -10,7 +11,8 @@ class ITNeuronLayerTest(TestCase):
         Integration testing of NeuronLayer class with depency
         on real Neuron NeuronNetwork classes 
     """
-
+	
+	@testrail('C55')
     def test_feeding_layer(self):
         """
         Tests behavior of ouput value calculation

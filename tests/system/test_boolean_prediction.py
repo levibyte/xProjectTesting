@@ -1,6 +1,7 @@
 import random
 import mock
 from unittest import TestCase
+from pytest_testrail.plugin import testrail
 
 from xProject import NeuralNetwork
 from xProject import Neuron
@@ -8,6 +9,7 @@ from xProject import NeuronLayer
 
 class AIBooleanPredictionTest(TestCase):
 
+	@testrail('C52')
 	def test_ai_can_predict_the_or_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
@@ -23,7 +25,7 @@ class AIBooleanPredictionTest(TestCase):
 		assert nn.feed_forward([1,1])[0] > 0.9
 		#print ("Predication OR when [1,1] --> {}".format(nn.feed_forward([1,1])))
 
-
+	@testrail('C53')
 	def test_ai_can_predict_the_xor_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
@@ -39,7 +41,7 @@ class AIBooleanPredictionTest(TestCase):
 		assert nn.feed_forward([1,0])[0] < 0.1
 		#print ("Predication XOR when [1,0] --> {}".format(nn.feed_forward([1,0])))
 
-
+	@testrail('C54')
 	def test_ai_can_predict_the_and_operation(self):
 		training_sets = [
 			[[0, 0], [0]],
