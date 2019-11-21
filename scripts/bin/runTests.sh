@@ -19,17 +19,17 @@ else
 	suitestr="tests/"
 fi
 
-
-if [ "$TRUSR" = "" ] || [ "$TRPWD" == "" ]; then
-	echo "Error: set username password first"
-	exit 1
-else
-	if [ "$TEAMCITY" == "" ]; then
+if [ "$TEAMCITY" == "" ]; then
+	if [ "$TRUSR" = "" ] || [ "$TRPWD" == "" ]; then
+		echo "Error: set username password first"
+		exit 1
+	fi
+	#if [ "$TEAMCITY" == "" ]; then
 		cp etc/testrail.cfg testrail.cfg.override 
 		sed -i "s/!TC_TESTRAIL_USR!/$TRUSR/" testrail.cfg.override 
 		sed -i "s/!TC_TESTRAIL_PWD!/$TRPWD/" testrail.cfg.override 
 		sed -i "s/!TC_TESTRAIL_SID!/$suiteid/" testrail.cfg.override 
-	fi
+	#fi
 fi
 
 echo "Inovcation: pytest --cov=xProject --testdox --testrail $suiteidstr --tr-testrun-name="$runname" --tr-config=testrail.cfg.override $suitestr "
