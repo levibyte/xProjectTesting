@@ -5,95 +5,87 @@ from pytest_testrail.plugin import testrail
 
 from xProject import Neuron
 
-@pytest.mark.describe('Unit testing of Neuron class')
-class NeuronTest(TestCase):
-    """
-        Unit tests the Neuron class in isolation, meaning
-        that all members functions will be tested using Mock object for any
-        dependcies .. opertions and ...s
-    """
 
-    @pytest.mark.describe('test title1')
-    @testrail('C51')
-    def test_construction_of_dummy_neuron(self):
-        """
-        Tests Construscts of Neuron Object
-        a ... of ... and.
+@testrail('C51')
+def test_construction_of_dummy_neuron():
+	"""
+	Tests construction of Neuron Object
 
-        Checks:
-            - whether valid 
+	Args:
+		- None
 
-        Args:
-            - None
+	Return:
+		- None
 
-        Return:
-            - None
+	"""
+	neuron = Neuron.Neuron(0.1)
 
-        """
-        neuron = Neuron.Neuron(0.1)
+@testrail('C62')
+@mock.patch('xProject.Neuron.Neuron.squash')
+def test_calculating_the_output(mock_squash):
+	"""
+	Tests behavior of ouput value calculation
+	Given input i1, i2, i3 , weights w1, w2, w2 and bias "B" 
+	the output should be  total += .inputs[i] * .weights[i]
 
-    @mock.patch('xProject.Neuron.Neuron.squash')
-    def test_calculating_the_output(self,mock_squash):
-        """
-        Tests behavior of ouput value calculation
-        Given input i1, i2, i3 , weights w1, w2, w2 and bias "B" 
-        the output should be  total += self.inputs[i] * self.weights[i]
+	Mocks:
+		- Neuron.Squash()
 
-        Mocks:
-            - Squash()
+	Inputs:
+		- None
 
-        Inputs:
-            - None
+	Epected:
+		- calculate_output to be 1
+		- sqush member to be called
+		
+	"""
+	mock_squash.return_value = 1
+	neuron = Neuron.Neuron(0.1)
+	neuron.weights = [0.2, 0.4, 0.1]
+	inputs = [ 1, 1, 5 ]
+	assert neuron.calculate_output(inputs) == 1 
+	mock_squash.assert_called()
 
-        Epected:
-            - calculate_output to be 1
-            - sqush member to be called
-            
-        """
-        mock_squash.return_value = 1
-        neuron = Neuron.Neuron(0.1)
-        neuron.weights = [0.2, 0.4, 0.1]
-        inputs = [ 1, 1, 5 ]
-        assert neuron.calculate_output(inputs) == 1 
-        mock_squash.assert_called()
+@testrail('C63')
+def test_consistency_of_squash_function():
+	"""
+	Tests behavior of squash function
+	Given input i1, i2, i3 , weights w1, w2, w2 and bias "B" 
+	the output should be  total += .inputs[i] * .weights[i]
 
+	Inputs:
+		- total_net_input
 
-    def test_consistency_of_squash_function(self):
-        """
-        Tests behavior of squash function
-        Given input i1, i2, i3 , weights w1, w2, w2 and bias "B" 
-        the output should be  total += self.inputs[i] * self.weights[i]
+	Epected:
+		- squash return value to be 1 / (1 + math.exp(-total_net_input))
 
-        Inputs:
-            - total_net_input
+	"""
 
-        Epected:
-            - squash return value to be 1 / (1 + math.exp(-total_net_input))
+	input_val = 0.9
+	neuron = Neuron.Neuron(0.1)
+	assert neuron.squash(input_val) < 1
+	assert neuron.squash(input_val) > 0
 
-        """
-
-        input_val = 0.9
-        neuron = Neuron.Neuron(0.1)
-        assert neuron.squash(input_val) < 1
-        assert neuron.squash(input_val) > 0
-
+@testrail('C64')
 @pytest.mark.parametrize("o1,o2,expected",[
     (0.1,0.2,0.3),
     (0.2,0.2,0.1)],
 )
-def test_is_error_detection_valid(o1,o2,expected):
+def test_the_error_detection_is_valid(o1,o2,expected):
     """
-    Tests behavior of error detection
+    Tests behavior of Neuron error detection function
     Given currnet target output o1 , and current output o2 ,
-    The error function... :  return 0.5 * (target_output - self.output) ** 2
-
+    The error function should calculate and return the difference
+    Via following formulat: 0.5 * (o1 - o2) ** 2
+		
     Inputs:
-	- current output 
-	- target outpt 
+		- case1 : o1 = 0.1  o2 = 0.2 
+		- case2 : o1 = 0.2  o2 = 0.2 
 
     Expected:
-	- 0.5 * (target_output - current_output) ** 2
-
+		- case1 : return_val < 1
+		- case2 : return_val < 1
+	
     """
 
     neuron = Neuron.Neuron(0.1)

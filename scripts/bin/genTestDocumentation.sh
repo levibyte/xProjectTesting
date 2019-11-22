@@ -1,2 +1,2 @@
 #!/bin/bash
-#todo
+pdoc3 tests/ --html --force

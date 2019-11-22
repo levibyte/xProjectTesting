@@ -11,6 +11,19 @@ from xProject import NeuronLayer
 
 @testrail('C52')
 def test_ai_can_predict_the_or_operation():
+	"""
+	System/behavior testing of NeuralNetwork predicting
+	the behavior of two bit OR operation. 
+
+	Training inputs:
+		- [0, 0] -> 0
+		- [0, 1] -> 1
+		- [1, 0] -> 1
+
+	Check input(s):
+		- [1, 1] => 1
+	"""
+
 	training_sets = [
 		[[0, 0], [0]],
 		[[0, 1], [1]],
