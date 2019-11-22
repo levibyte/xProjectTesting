@@ -15,13 +15,14 @@ def test_ai_can_predict_the_or_operation():
 	System/behavior testing of NeuralNetwork predicting
 	the behavior of two bit OR operation. 
 
-	Training inputs:
+	Inputs:
 		- [0, 0] -> 0
 		- [0, 1] -> 1
 		- [1, 0] -> 1
 
-	Check input(s):
+	Epected:
 		- [1, 1] => 1
+		
 	"""
 
 	training_sets = [
